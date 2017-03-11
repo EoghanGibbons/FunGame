@@ -1,0 +1,56 @@
+<html>
+
+<head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  	<title>Eoghan Gibbons - C00142724 ProjBel</title>
+    <!--Javascript Library Files-->
+    <script src="js/lib/phaser.min.js"></script>
+    <script src="js/lib/easystar-0.2.3.min.js"></script>
+    <!--Javascript Game States-->
+    <script src="js/src/states/boot.js"></script>
+    <script src="js/src/states/preload.js"></script>
+    <script src="js/src/states/menu.js"></script>
+    <script src="js/src/states/Game.js"></script>
+    <!--Javascript Game Objects-->
+    <script src="js/src/objects/entity.js"></script>
+    <!--Javascript Game Components-->
+    <script src="js/src/components/aiInputComponent.js"></script>
+    <script src="js/src/components/animationComponent.js"></script>
+    <script src="js/src/components/commands.js"></script>
+    <script src="js/src/components/doorComponent.js"></script>
+    <script src="js/src/components/harmfulComponent.js"></script>
+    <script src="js/src/components/hudComponent.js"></script>
+    <script src="js/src/components/itemComponent.js"></script>
+    <script src="js/src/components/physicsComponent.js"></script>
+    <script src="js/src/components/playerComponent.js"></script>
+    <script src="js/src/components/soundsComponent.js"></script>
+    <script src="js/src/components/statComponent.js"></script>
+    <script src="js/src/components/timerComponent.js"></script>
+    <!--Javascript Game Events-->
+    <script src="js/src/components/events.js"></script>
+    <!--Javascript Phaser Plugins-->
+    <script src="js/src/plugins/pathfinding.js"></script>
+</head>
+
+<body>
+
+  <div id="game"></div>
+  <div id="orientation"></div>
+
+<script type="text/javascript">
+
+window.onload = function () {
+
+    var BelGame = new Phaser.Game(1200, 750, Phaser.CANVAS, 'game');
+    
+    BelGame.state.add('Boot', ProjBel.Boot);
+    BelGame.state.add('Preload', ProjBel.Preload);
+    BelGame.state.add('Menu', ProjBel.Menu);
+    BelGame.state.add('Game', ProjBel.Game);
+
+    BelGame.state.start('Boot');
+}
+</script>
+
+
+</html>

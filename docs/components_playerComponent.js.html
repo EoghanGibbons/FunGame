@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/playerComponent.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/playerComponent.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Player Component
+ * @constructor
+ * @param   {ProjBel.Entity}   actor - Reference to Entity that has this component, in this case the Player
+ * @returns {ProjBel.PlayerComponent}
+ */
+ProjBel.PlayerComponent = function (actor) {
+    'use strict';
+    
+    /**
+     * @type {object}
+     */
+    this.cursors = actor.game.input.keyboard.createCursorKeys();
+    
+    /**
+     * @type {ProjBel.Entity}
+     */
+    actor.sword = null;
+    /**
+     * @type {ProjBel.Entity}
+     */
+    actor.shield = null;
+    
+    this.cursors.basicAttack = actor.game.input.keyboard.addKey(Phaser.Keyboard.SPACE);
+    this.cursors.basicAttack.onDown.add(ProjBel.Commands.melle_attack, actor.sword);
+    
+    actor.body.onBeginContact.add(this.collisionResponse, actor);
+    
+    actor.game.camera.follow(actor);
+    return this;
+};
+
+ProjBel.PlayerComponent.prototype.initialize = function (player) {
+    'use strict';
+    this.cursors.basicAttack.onDown.add(player.commands.melle_attack(player.sword));
+};
+
+ProjBel.PlayerComponent.prototype.update = function (player) {
+    'use strict';
+	if (this.cursors.left.isDown) {
+        //  Apply velocity to the left
+        player.body.moveLeft(150);
+    } else if (this.cursors.right.isDown) {
+        //  Apply velcity to the right
+        player.body.moveRight(150);
+    }
+    
+    if (this.cursors.up.isDown) {
+		player.body.moveUp(150);
+    } else if (this.cursors.down.isDown) {
+		player.body.moveDown(150);
+    }
+};
+
+/*  
+    * Function called when player's body collides with another body
+    * @this &lt;ProjBel.Entity>
+    * @param {Phaser.Sprite.Body} body - The body of the object that collided with our Player Entity.
+    * @listens ProjBel.Entity.PhysicsComponent~event:ProjBel.Entity.body
+*/
+ProjBel.PlayerComponent.prototype.collisionResponse = function (body) {
+    'use strict';
+    if (body) {
+        if (body.sprite) {
+            if (body.sprite.components.HarmfulComponent) {
+                try {
+                    this.components.StatComponent.changeHealth(body.sprite.components.HarmfulComponent.damage);
+                    console.log(this.components.StatComponent.health);
+                } catch (err) {
+                    console.log(this.components, err);
+                }
+                this.body.velocity.x = ((this.body.mass * this.body.velocity.x) + (body.mass * body.velocity.x)) / this.body.mass * 3;
+                this.body.velocity.y = ((this.body.mass * this.body.velocity.y) + (body.mass * body.velocity.y)) / this.body.mass * 3;
+            } else if (body.sprite.components.DoorComponent) {
+                try {
+                    ProjBel.Commands.goToLevel(body.sprite.properties.destination);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+        } else {
+            if (this.components.SoundsComponent) {
+                this.components.SoundsComponent.play('wallbump');
+            }
+        }
+    }
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ProjBel.AiInputComponent.html">AiInputComponent</a></li><li><a href="ProjBel.AnimationComponent.html">AnimationComponent</a></li><li><a href="ProjBel.Boot.html">Boot</a></li><li><a href="ProjBel.DoorComponent.html">DoorComponent</a></li><li><a href="ProjBel.Entity.html">Entity</a></li><li><a href="ProjBel.Game.html">Game</a></li><li><a href="ProjBel.HarmfulComponent.html">HarmfulComponent</a></li><li><a href="ProjBel.HudComponent.html">HudComponent</a></li><li><a href="ProjBel.Menu.html">Menu</a></li><li><a href="ProjBel.PhysicsComponent.html">PhysicsComponent</a></li><li><a href="ProjBel.PlayerComponent.html">PlayerComponent</a></li><li><a href="ProjBel.SoundsComponent.html">SoundsComponent</a></li><li><a href="ProjBel.StatComponent.html">StatComponent</a></li><li><a href="ProjBel.TimerComponent.html">TimerComponent</a></li></ul><h3>Namespaces</h3><ul><li><a href="ProjBel.html">ProjBel</a></li><li><a href="ProjBel.Commands.html">Commands</a></li><li><a href="ProjBel.Events.html">Events</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Apr 19 2016 04:56:20 GMT+0100 (GMT Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

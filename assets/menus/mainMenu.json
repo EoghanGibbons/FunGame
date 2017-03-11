@@ -1,0 +1,7 @@
+{
+	"buttons": [
+		{"xPos":"525", "yPos":"400", "text":"New Game", "command":"start_game", "property":"overWorld"},
+        {"xPos":"525", "yPos":"600", "text":"Options", "command":"go_to_menu", "property":"optionsMenu"}
+	],
+    "background": "menuBackGround"
+}

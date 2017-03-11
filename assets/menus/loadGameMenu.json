@@ -1,0 +1,7 @@
+{
+	"buttons": [
+		{"xPos":"240", "yPos":"10", "text":"New Game", "command":"start_game", "properties":"Dungeon-1-Room-1"},
+        {"xPos":"240", "yPos":"10", "text":"Continue Game", "command":"go_to_menu", "properties":"loadGameMenu"},
+        {"xPos":"240", "yPos":"10", "text":"Options", "command":"go_to_menu", "properties":"optionsMenu"}
+	]
+}
