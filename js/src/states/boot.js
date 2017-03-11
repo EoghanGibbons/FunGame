@@ -19,15 +19,15 @@ ProjBel.Boot.prototype = {
 		'use strict';
 		this.game.load.image("loading", "assets/loading.png");
 	},
-  
+
 	/**
-	 * 
+	 *
 	 */
 	create: function () {
 		'use strict';
 		this.input.maxPointers = 1;
 		// this.stage.disableVisibilityChange = true;
-		
+
 		if (this.game.device.desktop) {
 			this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 			this.scale.minWidth = 256;
@@ -48,13 +48,12 @@ ProjBel.Boot.prototype = {
 			this.scale.setResizeCallback(this.gameResized, this);
 			this.scale.enterIncorrectOrientation.add(this.enterIncorrectOrientation, this);
 			this.scale.leaveIncorrectOrientation.add(this.leaveIncorrectOrientation, this);
-			this.scale.setScreenSize(true);
 		}
 		this.state.start('Preload');
 	},
-    
+
 	/**
-	 * 
+	 *
 	 */
 	enterIncorrectOrientation: function () {
 		'use strict';
@@ -63,7 +62,7 @@ ProjBel.Boot.prototype = {
 	},
 
 	/**
-	 * 
+	 *
 	 */
 	leaveIncorrectOrientation: function () {
 		'use strict';

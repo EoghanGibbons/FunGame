@@ -4,8 +4,8 @@
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   	<title>Eoghan Gibbons - C00142724 ProjBel</title>
     <!--Javascript Library Files-->
-    <script src="js/lib/phaser.min.js"></script>
-    <script src="js/lib/easystar-0.2.3.min.js"></script>
+    <script src="js/lib/v2/build/phaser.js"></script>
+    <script src="js/lib/easystar.min.js"></script>
     <!--Javascript Game States-->
     <script src="js/src/states/boot.js"></script>
     <script src="js/src/states/preload.js"></script>
@@ -42,7 +42,7 @@
 window.onload = function () {
 
     var BelGame = new Phaser.Game(1200, 750, Phaser.CANVAS, 'game');
-    
+
     BelGame.state.add('Boot', ProjBel.Boot);
     BelGame.state.add('Preload', ProjBel.Preload);
     BelGame.state.add('Menu', ProjBel.Menu);
