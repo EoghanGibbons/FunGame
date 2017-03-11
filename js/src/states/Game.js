@@ -51,12 +51,7 @@ ProjBel.Game.prototype = {
         'use strict';
         var i;
         for (i = 0; i < this.entities.length; i += 1) {
-			var t0 = performance.now();
             this.entities[i].update(this);
-			var t1 = performance.now();
-			if (t1 -t0 > 0.5){
-				console.log("Call to update took " + (t1 - t0) + " milliseconds.")
-			}
         }
     },
 
@@ -66,6 +61,7 @@ ProjBel.Game.prototype = {
 	gameOver: function () {
         'use strict';
         this.resetEntities();
+        this.stage.destroy();
         this.state.start('Menu', true, false, 'gameOverMenu');
 	},
 
@@ -194,12 +190,12 @@ ProjBel.Game.prototype = {
      */
     togglePause: function () {
         'use strict';
-        this.paused = !this.paused;
     },
 
     goTo : function (destination) {
         'use strict';
         this.currentLevel = destination;
+
         this.resetEntities();
         this.loadLevel();
     },

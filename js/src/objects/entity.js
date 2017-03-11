@@ -84,8 +84,9 @@ ProjBel.Entity.prototype.update = function (game) {
 ProjBel.Entity.prototype.addComponent = function (componentName) {
     'use strict';
     try {
-			this.components.push(new ProjBel[componentName](this.game))
-        this.components[componentName] = new ProjBel[componentName](this);
+			//this.components.push(new ProjBel[componentName](this.game))
+			console.log(componentName);
+        this.components[componentName] = eval("new Components." + componentName + "(this)");
     } catch (err) {
         console.log(componentName, err);
     }

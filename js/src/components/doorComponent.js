@@ -3,7 +3,7 @@
  * @constructor
  * @returns {ProjBel.DoorComponent}
  */
-ProjBel.DoorComponent = function (actor) {
+Components.DoorComponent = function (actor) {
     'use strict';
     this.destination = actor.properties.destination || "";
     return this;

@@ -4,7 +4,7 @@
  * @constructor
  * @param   {ProjBel.Entity}   actor - Reference to Entity that has this component.
  */
-ProjBel.TimerComponent = function (actor) {
+Components.TimerComponent = function (actor) {
     'use strict';
     actor.game.time.events.loop(Phaser.Timer.SECOND * parseInt(actor.properties.timeCount, 10), ProjBel.Commands[actor.properties.command], this, actor);
     return this;

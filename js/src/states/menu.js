@@ -22,8 +22,10 @@ ProjBel.Menu.prototype = {
     init: function (menu) {
         'use strict';
         this.currentMenu = menu || "mainMenu";
+        ProjBel.music = this.add.audio("Menu");
+        ProjBel.music.play();
     },
-    
+
 	/**
 	 * Creates The Menu
 	 */
@@ -33,16 +35,18 @@ ProjBel.Menu.prototype = {
         this.add.image(0, 0, menuObject.background);
         menuObject.buttons.forEach(function (button) {
             //x position, y position, texture key, function to call on click,  context to call the function in (ie. what the this is), overFrame, out frame, downFrame
-            this.buttons[button.command] = this.add.button(button.xPos, button.yPos, 'button', this.callButton, this.buttons[button.command], 2, 1, 0);
+            this.buttons[button.command] = this.add.button(button.xPos, button.yPos, 'button', this.callButton, this, 2, 1, 0);
             this.buttons[button.command].properties = button;
+            this.buttons[button.command].action = new Action(button.command);
             this.buttons[button.command].context = this;
             this.buttons[button.command].text = this.add.text(button.xPos, button.yPos, button.text, { fill: '#ffffff' });
-            this.buttons[button.command].fixedToCamera = true;
         }, this);
 	},
-    
-    callButton: function () {
+
+    callButton: function (sender) {
         'use strict';
-        ProjBel.Commands[this.properties.command](this.context, this.properties.property);
+        //console.log(sender);
+        sender.action.execute(this);
+        //ProjBel.Commands[this.properties.command](this.context, this.properties.property);
     }
 };

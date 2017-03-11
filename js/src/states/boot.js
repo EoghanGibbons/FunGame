@@ -4,9 +4,21 @@
  */
 ProjBel = {
     /* ProjBel.music  Reference to music so it can persist through-out state swaps */
-    music: null
+    music: null,
+    stateManager: null
 };
 
+Components = {
+
+};
+
+Commands = {
+
+};
+
+GameStates = {
+
+};
 /**
  * @constructor
  */
@@ -17,6 +29,7 @@ ProjBel.Boot = function () {
 ProjBel.Boot.prototype = {
 	preload: function () {
 		'use strict';
+    //this.game.load.video("intro", "assets/Videos/intro.webm");
 		this.game.load.image("loading", "assets/loading.png");
 	},
 
@@ -49,7 +62,7 @@ ProjBel.Boot.prototype = {
 			this.scale.enterIncorrectOrientation.add(this.enterIncorrectOrientation, this);
 			this.scale.leaveIncorrectOrientation.add(this.leaveIncorrectOrientation, this);
 		}
-		this.state.start('Preload');
+		ProjBel.stateManager.GoTo('Preload');
 	},
 
 	/**

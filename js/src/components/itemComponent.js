@@ -4,9 +4,9 @@ ProjBel.ItemComponent = function (command) {
     return this;
 };
 
-ProjBel.ItemComponent.prototype.constructor = ProjBel.ItemComponent;
-
-ProjBel.ItemComponent.prototype.use = function (actor) {
-    'use strict';
-    this.command.execute();
+ProjBel.ItemComponent.prototype = {
+  use : function (actor) {
+      'use strict';
+      this.command.execute();
+  }
 };

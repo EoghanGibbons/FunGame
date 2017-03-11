@@ -4,7 +4,7 @@
  * @param {ProjBel.Entity} actor - Entity who has this component
  * @returns {HarmfulComponent}
  */
-ProjBel.HarmfulComponent = function (actor) {
+Components.HarmfulComponent = function (actor) {
     'use strict';
     this.damage = parseFloat(actor.properties.damage) || -0.5;
     return this;

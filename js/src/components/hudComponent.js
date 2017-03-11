@@ -4,11 +4,11 @@
  * @param   {ProjBel.Entity} actor - reference to Entity that has this component
  * @returns {ProjBel.HudComponent}
  */
-ProjBel.HudComponent = function (actor) {
+Components.HudComponent = function (actor) {
     'use strict';
-    
+
     this.fixedToCamera = true;
-    
+
     return this;
 };
 
@@ -16,6 +16,8 @@ ProjBel.HudComponent = function (actor) {
  * Called each frame by Entity.update
  * @param {ProjBel.Entity} actor - Entity this component belongs to
  */
-ProjBel.HudComponent.prototype.update = function (actor) {
-    'use strict';
+Components.HudComponent.prototype = {
+  update : function (actor) {
+      'use strict';
+  }
 };
